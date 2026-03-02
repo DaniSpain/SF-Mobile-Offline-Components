@@ -1,0 +1,17 @@
+@import 'c/commonStyles';
+
+.component-background {
+  background: var(--lwc-colorBackground, #ffffff);
+}
+
+.card-container {
+  padding: 0.75rem;
+}
+
+.title-slot {
+  margin-bottom: 0.5rem;
+}
+
+.body-slot {
+  display: block;
+}

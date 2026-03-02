@@ -1,0 +1,33 @@
+<template>
+    <div class="component-background">
+        <template if:true={record}>
+            <div class="card-container">
+                <div class="title-slot">
+                    <c-record-header
+                        record-name={name}
+                        object-api-name={objectApiName}
+                    ></c-record-header>
+                </div>
+
+                <div class="body-slot">
+                    <!-- Mostra i campi del Task in sola lettura -->
+                    <lightning-record-form
+                        record-id={recordId}
+                        object-api-name={objectApiName}
+                        fields={fields}
+                        columns="1"
+                        mode="readonly"
+                    >
+                    </lightning-record-form>
+                </div>
+
+                <!-- Eventuale sezione per draft, se vorrai riusarla in futuro
+                <c-draft-details-list
+                    record-id={recordId}
+                    fields={fields}
+                ></c-draft-details-list>
+                -->
+            </div>
+        </template>
+    </div>
+</template>

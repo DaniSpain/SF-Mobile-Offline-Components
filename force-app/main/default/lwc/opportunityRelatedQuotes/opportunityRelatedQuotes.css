@@ -1,0 +1,69 @@
+.quote-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.quote-row {
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid var(--lwc-colorBorder,#dddbda);
+}
+.quote-row:last-child {
+    border-bottom: none;
+}
+.row-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.left {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+}
+.name {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+.qnum {
+    font-weight: 700;
+}
+.qname {
+    max-width: 16rem;
+}
+.meta {
+    font-size: 0.75rem;
+    color: var(--lwc-colorTextWeak, #706e6b);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+.sep {
+    opacity: 0.6;
+}
+.right {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    white-space: nowrap;
+}
+.chevron {
+    --sds-c-icon-color-foreground-default: var(--lwc-colorTextWeak,#706e6b);
+}
+.offline-banner {
+    background: var(--lwc-colorBackgroundAlt,#f3f2f2);
+    border-top: 1px solid var(--lwc-colorBorder,#dddbda);
+    border-bottom: 1px solid var(--lwc-colorBorder,#dddbda);
+    display: flex;
+    align-items: center;
+}
+/* Add some padding to match the card layout */
+.quote-row:hover {
+    background-color: var(--lwc-colorBackgroundHover, #f3f2f2);
+    cursor: pointer;
+}
+/* Ensure proper spacing for the list items */
+.quote-row {
+    transition: background-color 0.2s ease;
+}
