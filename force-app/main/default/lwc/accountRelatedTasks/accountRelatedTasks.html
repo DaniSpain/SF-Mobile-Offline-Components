@@ -1,0 +1,140 @@
+<template>
+    <template if:true={tasks}>
+        <article class="slds-card slds-var-m-around_small">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__figure">
+                        <span
+                            class="slds-icon_container slds-icon-standard-task"
+                            title="Tasks"
+                        >
+                            <lightning-icon
+                                icon-name="standard:task"
+                                alternative-text="Task"
+                                title="Task"
+                            ></lightning-icon>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title slds-truncate">
+                            <span>Tasks</span>
+                        </h2>
+                    </div>
+                </header>
+            </div>
+
+            <div class="slds-card__body slds-card__body_inner">
+                <ul class="slds-has-dividers_around-space">
+                    <template for:each={tasks} for:item="task">
+                        <li
+                            key={task.Id}
+                            class="slds-item"
+                            onclick={taskClick}
+                            data-id={task.Id}
+                        >
+                            <article class="slds-tile slds-media">
+                                <div class="slds-media__figure">
+                                    <span
+                                        class="slds-icon_container"
+                                        title="Task"
+                                    >
+                                        <lightning-icon
+                                            icon-name="standard:task"
+                                            alternative-text="Task"
+                                            title="Task"
+                                        ></lightning-icon>
+                                    </span>
+                                </div>
+                                <div class="slds-media__body">
+                                    <h3
+                                        class="slds-truncate"
+                                        title={task.Subject.value}
+                                    >
+                                        {task.Subject.value}
+                                    </h3>
+                                    <div class="slds-tile__detail">
+                                        <dl
+                                            class="slds-list_horizontal slds-wrap"
+                                        >
+                                            <dt
+                                                class="slds-item_label slds-text-color_weak slds-truncate"
+                                                title="Status"
+                                            >
+                                                Status:
+                                            </dt>
+                                            <dd
+                                                class="slds-item_detail slds-truncate"
+                                                title={task.Status.value}
+                                            >
+                                                {task.Status.value}
+                                            </dd>
+
+                                            <dt
+                                                class="slds-item_label slds-text-color_weak slds-truncate"
+                                                title="Due Date"
+                                            >
+                                                Type:
+                                            </dt>
+                                            <dd
+                                                class="slds-item_detail slds-truncate"
+                                                title={task.ActivityDate.value}
+                                            >
+                                                {task.Type.value}
+                                            </dd>
+
+                                            <dt
+                                                class="slds-item_label slds-text-color_weak slds-truncate"
+                                                title="Due Date"
+                                            >
+                                                Due Date:
+                                            </dt>
+                                            <dd
+                                                class="slds-item_detail slds-truncate"
+                                                title={task.ActivityDate.value}
+                                            >
+                                                {task.ActivityDate.value}
+                                            </dd>
+
+                                        </dl>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </article>
+    </template>
+
+    <!-- Semplice stato "vuoto" -->
+    <template if:false={tasks}>
+        <article class="slds-card slds-var-m-around_small">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__figure">
+                        <span
+                            class="slds-icon_container slds-icon-standard-task"
+                            title="Tasks"
+                        >
+                            <lightning-icon
+                                icon-name="standard:task"
+                                alternative-text="Task"
+                                title="Task"
+                            ></lightning-icon>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title slds-truncate">
+                            <span>Tasks</span>
+                        </h2>
+                    </div>
+                </header>
+            </div>
+            <div class="slds-card__body slds-card__body_inner">
+                <p class="slds-text-body_small slds-text-color_weak">
+                    Nessun Task trovato per questo Account.
+                </p>
+            </div>
+        </article>
+    </template>
+</template>

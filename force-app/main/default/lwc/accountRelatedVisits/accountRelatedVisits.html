@@ -1,0 +1,168 @@
+<template>
+    <template if:true={visits}>
+        <article class="slds-card slds-var-m-around_small">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__figure">
+                        <span
+                            class="slds-icon_container slds-icon-standard-log_a_call"
+                            title="Visits"
+                        >
+                            <lightning-icon
+                                icon-name="standard:log_a_call"
+                                alternative-text="Visit"
+                                title="Visit"
+                            ></lightning-icon>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title slds-truncate">
+                            <span>Visits</span>
+                        </h2>
+                    </div>
+                </header>
+            </div>
+
+            <div class="slds-card__body slds-card__body_inner">
+                <ul class="slds-has-dividers_around-space">
+                    <template for:each={visits} for:item="visit">
+                        <li
+                            key={visit.Id}
+                            class="slds-item"
+                            onclick={visitClick}
+                            data-id={visit.Id}
+                        >
+                            <article class="slds-tile slds-media">
+                                <div class="slds-media__figure">
+                                    <span
+                                        class="slds-icon_container"
+                                        title="Visit"
+                                    >
+                                        <lightning-icon
+                                            icon-name="standard:log_a_call"
+                                            alternative-text="Visit"
+                                            title="Visit"
+                                        ></lightning-icon>
+                                    </span>
+                                </div>
+                                <div class="slds-media__body">
+                                    <h3
+                                        class="slds-truncate"
+                                        title={visit.Name.value}
+                                    >
+                                        {visit.Name.value}
+                                    </h3>
+
+                                    <div class="slds-tile__detail">
+                                        <dl
+                                            class="slds-list_horizontal slds-wrap"
+                                        >
+                                            <dt
+                                                class="slds-item_label slds-text-color_weak slds-truncate"
+                                                title="Date"
+                                            >
+                                                Date:
+                                            </dt>
+                                            <dd
+                                                class="slds-item_detail slds-truncate"
+                                            >
+                                                <lightning-formatted-date-time
+                                                    value={visit.Date__c.value}
+                                                >
+                                                </lightning-formatted-date-time>
+                                            </dd>
+
+                                            <dt
+                                                class="slds-item_label slds-text-color_weak slds-truncate"
+                                                title="Status"
+                                            >
+                                                Status:
+                                            </dt>
+                                            <dd
+                                                class="slds-item_detail slds-truncate"
+                                                title={visit.Status__c.value}
+                                            >
+                                                {visit.Status__c.value}
+                                            </dd>
+
+                                            <dt
+                                                class="slds-item_label slds-text-color_weak slds-truncate"
+                                                title="Type"
+                                            >
+                                                Type:
+                                            </dt>
+                                            <dd
+                                                class="slds-item_detail slds-truncate"
+                                                title={visit.Type__c.value}
+                                            >
+                                                {visit.Type__c.value}
+                                            </dd>
+
+                                            <dt
+                                                class="slds-item_label slds-text-color_weak slds-truncate"
+                                                title="Objective"
+                                            >
+                                                Objective:
+                                            </dt>
+                                            <dd
+                                                class="slds-item_detail slds-truncate"
+                                                title={visit.Visit_Objective__c.value}
+                                            >
+                                                {visit.Visit_Objective__c.value}
+                                            </dd>
+
+                                            <dt
+                                                class="slds-item_label slds-text-color_weak slds-truncate"
+                                                title="Outcome"
+                                            >
+                                                Outcome:
+                                            </dt>
+                                            <dd
+                                                class="slds-item_detail slds-truncate"
+                                                title={visit.Outcome__c.value}
+                                            >
+                                                {visit.Outcome__c.value}
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </article>
+    </template>
+
+    <!-- Stato "vuoto" -->
+    <template if:false={visits}>
+        <article class="slds-card slds-var-m-around_small">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__figure">
+                        <span
+                            class="slds-icon_container slds-icon-standard-log_a_call"
+                            title="Visits"
+                        >
+                            <lightning-icon
+                                icon-name="standard:log_a_call"
+                                alternative-text="Visit"
+                                title="Visit"
+                            ></lightning-icon>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title slds-truncate">
+                            <span>Visits</span>
+                        </h2>
+                    </div>
+                </header>
+            </div>
+            <div class="slds-card__body slds-card__body_inner">
+                <p class="slds-text-body_small slds-text-color_weak">
+                    Nessuna visita trovata per questo Account.
+                </p>
+            </div>
+        </article>
+    </template>
+</template>

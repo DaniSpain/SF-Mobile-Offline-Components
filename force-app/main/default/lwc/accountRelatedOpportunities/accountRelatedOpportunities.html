@@ -1,0 +1,30 @@
+<template>
+    <div class="container">
+        <template if:true={hasRecords}>
+            <ul class="list">
+                <template for:each={opportunities} for:item="opp">
+                    <li key={opp.Id} class="list-item" data-id={opp.Id} onclick={handleNavigate}>
+                        <div class="row">
+                            <div class="primary">{opp.Name}</div>
+                            <div class="secondary stage">{opp.StageName}</div>
+                        </div>
+                        <div class="row">
+                            <div class="secondary amount">{opp.formattedAmount}</div>
+                            <div class="secondary date">{opp.formattedCloseDate}</div>
+                        </div>
+                    </li>
+                </template>
+            </ul>
+        </template>
+
+        <template if:false={hasRecords}>
+            <div class="empty">
+                <p>No Opportunities found.</p>
+            </div>
+        </template>
+
+        <template if:true={error}>
+            <c-error-panel friendly-message="We hit a snag loading Opportunities." errors={error}></c-error-panel>
+        </template>
+    </div>
+</template>

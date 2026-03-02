@@ -1,0 +1,119 @@
+<template>
+    <div class="component-background">
+        <lightning-record-edit-form
+            object-api-name="Visit__c"
+            record-id={recordId}
+            onsuccess={onSuccess}
+        >
+            <div class="header-slot">
+                <!-- Header con pulsanti -->
+                <lightning-layout horizontal-align="spread" class="slds-var-p-horizontal_xx-small">
+                    <lightning-layout-item>
+                        <lightning-button
+                            variant="base"
+                            data-id="cancel"
+                            label="Cancel"
+                            type="button"
+                            onclick={dismiss}
+                            class="button"
+                        ></lightning-button>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item data-id="name" class="record-name slds-align_absolute-center">
+                        <p style="word-break: break-all;">{name}</p>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item>
+                        <lightning-button
+                            variant="base"
+                            data-id="submit"
+                            label="Save"
+                            type="submit"
+                            class="button-primary"
+                        ></lightning-button>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+
+            <!-- Switch Normal / AI -->
+            <div class="slds-var-p-horizontal_small slds-var-p-top_small slds-var-p-bottom_x-small">
+                <div class="slds-text-body_small slds-m-bottom_x-small">
+                    Mode:
+                </div>
+                <lightning-button-group>
+                    <lightning-button
+                        label="Normal Mode"
+                        variant={normalModeVariant}
+                        onclick={setNormalMode}
+                    ></lightning-button>
+                    <lightning-button
+                        label="AI Assisted Mode"
+                        variant={aiModeVariant}
+                        onclick={setAiMode}
+                    ></lightning-button>
+                </lightning-button-group>
+            </div>
+
+            <div class="header-offset slds-var-p-horizontal_small slds-var-p-bottom_medium">
+                <!-- error message -->
+                <lightning-messages></lightning-messages>
+
+                <!-- NORMAL MODE: tutti i campi visibili -->
+                <template if:true={isNormalMode}>
+                    <lightning-input-field field-name={accountField}></lightning-input-field>
+                    <lightning-input-field field-name={opportunityField}></lightning-input-field>
+                    <lightning-input-field field-name={contactField}></lightning-input-field>
+                    <lightning-input-field field-name={dateField}></lightning-input-field>
+
+                    <lightning-input-field field-name={visitObjectiveField}></lightning-input-field>
+                    <lightning-input-field field-name={typeField}></lightning-input-field>
+                    <lightning-input-field field-name={statusField}></lightning-input-field>
+                    <lightning-input-field field-name={locationTypeField}></lightning-input-field>
+
+                    <lightning-input-field field-name={outcomeField}></lightning-input-field>
+                    <lightning-input-field field-name={outcomeDetailsField}></lightning-input-field>
+
+                    <lightning-input-field field-name={topicsDiscussedField}></lightning-input-field>
+                    <lightning-input-field field-name={competitorsMentionedField}></lightning-input-field>
+                    <lightning-input-field field-name={alsoRelevantFor}></lightning-input-field>
+
+                    <lightning-input-field field-name={nextStepDueDateField}></lightning-input-field>
+                    <lightning-input-field field-name={nextStepsField}></lightning-input-field>
+
+                    <!-- commento lungo sempre disponibile -->
+                    <lightning-input-field field-name={longCommentField}></lightning-input-field>
+                </template>
+
+                <!-- AI ASSISTED MODE: solo commento lungo -->
+                <template if:false={isNormalMode}>
+                    <div class="slds-text-color_weak slds-text-body_small slds-m-bottom_small">
+                        In <strong>AI Assisted Mode</strong> compili solo il campo seguente.
+                        Gli altri campi della Visit verranno popolati in un secondo momento
+                        da un processo AI lato server, una volta che il record sarà sincronizzato
+                        online.
+                    </div>
+
+                    <div class="slds-text-color_weak slds-text-body_small slds-m-bottom_small">
+                        Some questions to guide you:<br/>
+                        <ul>
+                            <li>What was the outcome of the meeting?</li>
+                            <li>What were the main topics?</li>
+                            <li>Any competitor has been mentioned?</li>
+                            <li>What are the next steps and what is the next step due date?</li>
+                            <li>Is thre any ither company in the group that might be interested in this customer?</li>
+                        </ul>
+                    </div>
+
+                    <lightning-input-field
+                        field-name={longCommentField}
+                    ></lightning-input-field>
+
+                    <div class="slds-text-color_weak slds-text-body_small slds-m-top_small">
+                        Suggerimento: puoi dettare la nota con la voce dalla tastiera del
+                        dispositivo mobile (speech-to-text).
+                    </div>
+                </template>
+            </div>
+        </lightning-record-edit-form>
+    </div>
+</template>
